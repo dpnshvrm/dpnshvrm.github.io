@@ -1,0 +1,234 @@
+@font-face {
+  font-family: 'Muli';
+  font-style: light;
+  font-weight: 300;
+  src: local('Muli Light Italic'), local('Muli-LightItalic'), url(Muli-LightItalic.ttf) format('truetype');
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background: #f4f4f4;
+	font-family: "Arial Unicode MS", Arial, sans-serif;
+	font-size: 14px;
+    line-height: 18px;
+	color: #373737;
+}
+
+a {
+    text-decoration: none;
+    border-bottom: 1px dotted #c0c0c0;
+}
+
+.clearfix:before, .clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+a#pull {
+    display: none;
+}
+
+a#ssTitle {
+	display: none;
+}
+
+a#ssCimpa {
+	display: none;
+}
+
+#header {
+	width: 100%;
+	height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+	background: #090934;
+    color: #ffffff;
+    z-index: 9;
+}
+
+#navigation {
+    text-align: : right;
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+    padding-right: 10px;
+}
+
+#navigation ul {
+    top: 8px;
+    position: relative;
+}
+
+#navigation li {
+    display: inline-block;
+    padding: 0 6px;
+}
+
+.current {
+    border-bottom: 3px solid #ffffff;
+}
+
+#navigation a {
+    color: inherit;
+    font-size: 16px;
+    border: none;
+}
+
+li#title {
+    margin-right: 20px;
+}
+
+#title a {
+    font-weight: bold;
+    font-size: 22px !important;
+}
+
+@media only screen and (max-width : 900px) {
+    #navigation ul {
+        display: none;
+        height: auto;
+        background: #090934;
+        top: -15px;
+        padding-bottom: 10px;
+    }
+    
+    #navigation a#pull {
+        display: inline-block;
+        position: absolute;
+        right: 10px;
+        top: 15px;
+        height: 30px;
+        width: 40px;
+        vertical-align: middle;
+        line-height: 30px;
+        background: url('../images/nav-icon.png') no-repeat;
+        background-position: center right;
+    }
+    
+    #navigation a#pull:after {
+        content: "";
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        position: absolute;
+        right: 15px;
+        top: 10px;
+    }
+    
+    #navigation li {
+        display: block;
+    }
+    
+    a#ssTitle {
+    	display: inline-block;
+    	padding: 0 10px 0 15px;
+    	line-height: 60px;
+    }
+    
+    a#ssCimpa {
+    	display: inline-block;
+    	padding: 0 10px 0 15px;
+    	line-height: 60px;
+    }
+
+    #cimpa, #title {
+        display: none !important;
+    }
+}
+
+#page {
+    position: relative;
+}
+
+.article {
+    padding-top: 70px;
+    margin-bottom: -50px;
+    border-bottom: 1px #c0c0c0 solid;
+    z-index: 1;
+}
+
+.intro {
+    display: inline-block;
+    font-size: 20px;
+    line-height: 26px;
+    color: #212D59;
+    vertical-align: middle;
+}
+
+.photo {
+    border-radius: 10px;
+    width: 150px;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 20px;
+}
+
+.photo img {
+    width: 150px;
+}
+
+.content {
+    text-align: justify;
+}
+
+thesis {
+    font-family: Muli, "Arial Unicode MS", Arial, sans-serif;
+    font-style: italic;
+}
+
+.sectionheader {
+    color: #606060;
+    text-shadow: 0 1px #ffffff;
+    margin-bottom: -10px;
+}
+
+.header {
+    margin-bottom: 0px;
+    font-size: 20px;
+    color: #212D59;
+}
+
+student {
+    border-bottom: 1px dotted #a0a0a0;
+}
+
+ul.nobullets {
+    list-style: none;
+    padding-left: 10px;
+}
+
+li {
+    padding-bottom: 10px;
+}
+
+.email, .phone, .mail {
+    font-weight: lighter;
+    font-size: 15px;
+    display: inline-block;
+    vertical-align: top;
+    line-height: 18px;
+    margin-top: -1px;
+    color: #606060;
+}
+
+.phone {
+    font-size: 13px;
+}
+
+paper {
+    font-style: italic;
+    font-family: Times, "Times New Roman";
+}
+
+
