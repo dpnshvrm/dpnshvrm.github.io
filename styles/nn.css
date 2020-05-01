@@ -140,6 +140,11 @@ li#title {
     	padding: 0 10px 0 15px;
     	line-height: 60px;
     }
+	#navigation a:hover{
+		background-color: #000000;
+		display:block
+	}
+	
 
     #cimpa, #title {
         display: none !important;
@@ -188,7 +193,7 @@ thesis {
 }
 
 .sectionheader {
-    color: #606060;
+    color: #1d3177;
     text-shadow: 0 1px #ffffff;
     margin-bottom: -10px;
 }
