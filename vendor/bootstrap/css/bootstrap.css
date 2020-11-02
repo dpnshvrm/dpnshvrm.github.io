@@ -147,7 +147,7 @@ sup {
 }
 
 a {
-  color: #00008B;
+  color: #122568;
   text-decoration: none;
   background-color: transparent;
 }
@@ -370,10 +370,12 @@ h2, .h2 {
 
 h3, .h3 {
   font-size: 1.75rem;
+  color: #212D59;
 }
 
 h4, .h4 {
   font-size: 1.5rem;
+  color: #122568;
 }
 
 h5, .h5 {
@@ -10030,58 +10032,14 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
-
-.intro {
-    display: inline-block;
-    font-size: 20px ;
-    line-height: 26px;
-    color: #212D59 ;
-    vertical-align: middle;
-}
-
-.article {
-    padding-top: 70px;
-    margin-bottom: -50px;
-    border-bottom: 1px #c0c0c0 solid;
-    z-index: 1;
-}
-
 .header {
-    margin-bottom: 0px;
-    font-size: 20px;
-    color: #212D59;'
-	font-style: light;
+    color: #212D59;
 }
 
-li {
-    padding-bottom: 10px;
-}
-.photo {
-    border-radius: 10px;
-    width: 150px;
-    overflow: hidden;
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 20px;
-}
 
-.photo img {
-    width: 150px;
-}
 
 .sectionheader {
-	font-size: 14px;
     color: #122568;
-    text-shadow: 0 1px #ffffff;
-    margin-bottom: -10px;
 }
-.email, .phone, .mail {
-    font-weight: lighter;
-    font-size: 15px;
-    display: inline-block;
-    vertical-align: top;
-    line-height: 18px;
-    margin-top: -1px;
-    color: #606060;
-}
+
 /*# sourceMappingURL=bootstrap.css.map */
