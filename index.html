@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Deepanshu Verma</title>
+  <title>Deepanshu Verma | Mathematical Scientist</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -18,6 +18,418 @@
 	
 	<!-- font-awesome-icons -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+	
+	<!-- Custom enhanced styles -->
+	<style>
+		:root {
+			--primary-color: #334155;
+			--secondary-color: #64748b;
+			--accent-color: #0f172a;
+			--dark-color: #1e293b;
+			--light-bg: #f8fafc;
+			--border-color: #cbd5e1;
+		}
+		
+		body {
+			font-family: 'Inter', sans-serif;
+			color: #334155;
+			background: #ffffff;
+		}
+		
+		/* Simple clean hero section */
+		#home {
+			background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+			padding: 60px 30px;
+			border-radius: 20px;
+			margin-bottom: 40px;
+			box-shadow: 0 10px 40px rgba(30, 41, 59, 0.15);
+			color: white;
+		}
+		
+		#home h4, #home h5 {
+			color: white !important;
+			text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+			font-weight: 600;
+		}
+		
+		#home p {
+			color: rgba(255,255,255,0.95);
+			font-size: 1.1em;
+			font-weight: 500;
+		}
+		
+		#home img {
+			border: 5px solid white;
+			box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+		}
+		
+		/* Section styling with cards */
+		#page > .container > div:not(#home) {
+			background: white;
+			padding: 40px;
+			margin-bottom: 30px;
+			border-radius: 15px;
+			box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+		}
+		
+		#page > .container > div:not(#home):hover {
+			transform: translateY(-5px);
+			box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+		}
+		
+		.header h4 {
+			border-bottom: none;
+			padding-bottom: 15px;
+			margin-bottom: 30px;
+			font-weight: 700;
+			color: var(--dark-color);
+			position: relative;
+			font-size: 1.8em;
+		}
+		
+		.header h4::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 80px;
+			height: 4px;
+			background: var(--dark-color);
+			border-radius: 2px;
+		}
+		
+		.header h4 i {
+			color: var(--dark-color);
+		}
+		
+		.sectionheader {
+			color: #475569;
+			font-weight: 600;
+			margin-top: 30px;
+			margin-bottom: 15px;
+			padding-left: 15px;
+			border-left: 5px solid var(--dark-color);
+			font-size: 1.3em;
+		}
+		
+		/* Research interests with modern cards */
+		#researchinterests ul {
+			list-style: none;
+			padding-left: 0;
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 15px;
+		}
+		
+		#researchinterests ul li {
+			padding: 20px 20px;
+			margin: 0;
+			background: white;
+			border: 2px solid #e2e8f0;
+			border-radius: 12px;
+			transition: all 0.3s ease;
+			position: relative;
+			overflow: hidden;
+		}
+		
+		#researchinterests ul li::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 5px;
+			height: 100%;
+			background: var(--dark-color);
+			transition: width 0.3s ease;
+		}
+		
+		#researchinterests ul li:hover {
+			transform: translateX(5px);
+			box-shadow: 0 8px 25px rgba(51, 65, 85, 0.15);
+			border-color: var(--dark-color);
+		}
+		
+		#researchinterests ul li:hover::before {
+			width: 100%;
+			opacity: 0.03;
+		}
+		
+		/* Teaching section with timeline style */
+		#teaching p strong {
+			color: var(--dark-color);
+			font-size: 1.15em;
+			font-weight: 600;
+		}
+		
+		#teaching ul {
+			border-left: 3px solid var(--dark-color);
+			padding-left: 25px;
+			margin-left: 10px;
+		}
+		
+		#teaching ul li {
+			margin-bottom: 12px;
+			line-height: 1.7;
+			position: relative;
+		}
+		
+		#teaching ul li::before {
+			content: '●';
+			position: absolute;
+			left: -32px;
+			color: var(--dark-color);
+			font-size: 1.2em;
+		}
+		
+		/* Publications with better spacing */
+		#Publications ol li {
+			margin-bottom: 20px;
+			line-height: 1.8;
+			text-align: justify;
+			padding: 15px;
+			background: #f8fafc;
+			border-radius: 8px;
+			border-left: 4px solid #e2e8f0;
+			transition: all 0.3s ease;
+		}
+		
+		#Publications ol li:hover {
+			background: #f1f5f9;
+			border-left-color: var(--dark-color);
+			transform: translateX(5px);
+		}
+		
+		#awards ol li {
+			margin-bottom: 15px;
+			line-height: 1.7;
+			padding-left: 10px;
+		}
+		
+		#awards ol li::marker {
+			color: var(--dark-color);
+			font-weight: 700;
+		}
+		
+		/* Contact section with cards */
+		#contact ul {
+			list-style: none;
+			padding: 0;
+		}
+		
+		#contact ul li {
+			padding: 15px;
+			margin-bottom: 15px;
+			background: #f8fafc;
+			border-radius: 10px;
+			border-left: 4px solid var(--dark-color);
+			transition: all 0.3s ease;
+		}
+		
+		#contact ul li:hover {
+			background: #f1f5f9;
+			transform: translateX(5px);
+		}
+		
+		a {
+			color: var(--dark-color);
+			transition: color 0.2s ease;
+			text-decoration: none;
+			font-weight: 500;
+		}
+		
+		a:hover {
+			color: var(--secondary-color);
+			text-decoration: underline;
+		}
+		
+		.fa-file-pdf-o:hover, .fa-video-camera:hover {
+			color: #dc3545 !important;
+			transform: scale(1.3);
+			transition: all 0.2s ease;
+		}
+		
+		#page {
+			background-color: transparent;
+		}
+		
+		.container {
+			max-width: 1000px;
+		}
+		
+		address {
+			background-color: white;
+			padding: 20px;
+			border-radius: 10px;
+			border-left: 4px solid var(--primary-color);
+			box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+			margin-top: 10px;
+		}
+		
+		/* Collapsible research interests */
+		.research-item {
+			cursor: pointer;
+			position: relative;
+			font-weight: 500;
+		}
+		
+		.research-item .toggle-icon {
+			float: right;
+			transition: transform 0.3s ease;
+			color: var(--dark-color);
+			font-weight: bold;
+		}
+		
+		.research-item.active .toggle-icon {
+			transform: rotate(90deg);
+		}
+		
+		.paper-list {
+			display: none;
+			margin-top: 15px;
+			padding: 20px;
+			background-color: #ffffff;
+			border-radius: 8px;
+			border: 2px solid #e2e8f0;
+			box-shadow: inset 0 2px 8px rgba(0,0,0,0.03);
+		}
+		
+		.paper-list.show {
+			display: block;
+			animation: slideDown 0.4s ease;
+		}
+		
+		@keyframes slideDown {
+			from {
+				opacity: 0;
+				transform: translateY(-15px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+		
+		.paper-list ul {
+			margin-bottom: 0;
+			padding-left: 25px;
+		}
+		
+		.paper-list li {
+			margin-bottom: 10px;
+			font-size: 0.92em;
+			line-height: 1.6;
+			background: none !important;
+			border: none !important;
+			padding: 6px 0 !important;
+			transform: none !important;
+			box-shadow: none !important;
+			color: #475569;
+			font-weight: 400;
+		}
+		
+		.paper-list li::before {
+			content: none !important;
+		}
+		
+		.paper-list li:hover {
+			transform: none !important;
+			color: var(--dark-color);
+		}
+		
+		/* CV section with download button */
+		#CV p {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+		
+		#CV a {
+			display: inline-block;
+			padding: 12px 30px;
+			background: var(--dark-color);
+			color: white !important;
+			border-radius: 8px;
+			font-weight: 600;
+			text-decoration: none;
+			transition: all 0.3s ease;
+			box-shadow: 0 4px 15px rgba(30, 41, 59, 0.2);
+		}
+		
+		#CV a:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 6px 25px rgba(30, 41, 59, 0.3);
+			background: var(--secondary-color);
+		}
+		
+		/* Navbar enhancements */
+		.navbar {
+			box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+			background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+		}
+		
+		.navbar-brand {
+			font-weight: 700;
+			font-size: 1.3em;
+		}
+		
+		.nav-link {
+			font-weight: 500;
+			transition: all 0.3s ease;
+		}
+		
+		.nav-link:hover {
+			transform: translateY(-2px);
+		}
+		
+		/* Smooth scroll behavior */
+		html {
+			scroll-behavior: smooth;
+		}
+		
+		/* Add fade-in animation on load */
+		@keyframes fadeInUp {
+			from {
+				opacity: 0;
+				transform: translateY(30px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+		
+		#page > .container > div {
+			animation: fadeInUp 0.6s ease forwards;
+			opacity: 0;
+		}
+		
+		#page > .container > div:nth-child(1) { animation-delay: 0.1s; }
+		#page > .container > div:nth-child(2) { animation-delay: 0.2s; }
+		#page > .container > div:nth-child(3) { animation-delay: 0.3s; }
+		#page > .container > div:nth-child(4) { animation-delay: 0.4s; }
+		#page > .container > div:nth-child(5) { animation-delay: 0.5s; }
+		#page > .container > div:nth-child(6) { animation-delay: 0.6s; }
+		#page > .container > div:nth-child(7) { animation-delay: 0.7s; }
+		
+		/* Responsive adjustments */
+		@media (max-width: 768px) {
+			#home {
+				padding: 40px 20px;
+			}
+			
+			#page > .container > div:not(#home) {
+				padding: 25px;
+			}
+			
+			.header h4 {
+				font-size: 1.5em;
+			}
+		}
+	</style>
 </head>
 
 <body id="page-top">
@@ -86,21 +498,82 @@
         </div>
 		
 		<div id='researchinterests'>
-          <div class="header"><h4>Research Interests
+          <div class="header"><h4><i class="fa fa-flask" style="margin-right: 10px;"></i>Research Interests
 		  </h4>
 		  </div>
 			<ul>
-				<li> <abbr title="Partial Differential Equation" class="initialism">PDE</abbr> Constrained Optimization </li>
-				<li> Inverse Problems </li>
-				<li> Numerical Analysis </li>
-				<li> Machine Learning </li>
-				<li> Reinforcement Learning</li>
+				<li class="research-item" onclick="togglePapers(this)">
+					<i class="fa fa-caret-right" style="color: #007bff; margin-right: 8px;"></i>
+					<abbr title="Partial Differential Equation" class="initialism">PDE</abbr> Constrained Optimization
+					<i class="fa fa-chevron-right toggle-icon"></i>
+					<div class="paper-list">
+						<ul>
+							<li>Gelphman et al. - End-to-end Training of High-Dimensional Optimal Control (2025)</li>
+							<li>Li et al. - Zero-Shot Transferable Solution for Optimal Control (2025)</li>
+							<li>Verma et al. - Neural Network Approaches for Parameterized Optimal Control (FODS 2024)</li>
+							<li>Li et al. - Neural Network approach for Stochastic Optimal Control (SISC 2024)</li>
+							<li>Madondo et al. - Learning Control Policies of Hodgkin-Huxley Neuronal Dynamics (2023)</li>
+							<li>Lamichhane et al. - Mixed FEM for Biharmonic Optimal Control (2023)</li>
+							<li>Antil et al. - Optimal Control, Numerics, and Applications of Fractional PDEs (2022)</li>
+							<li>Antil et al. - Optimal Control of Fractional PDEs with Constraints (2021)</li>
+							<li>Antil, Verma, Warma - Optimal Control of Fractional Elliptic PDEs (2020)</li>
+							<li>Antil, Verma, Warma - External Optimal Control of Space-Time Fractional Parabolic PDEs (2020)</li>
+						</ul>
+					</div>
+				</li>
+				<li class="research-item" onclick="togglePapers(this)">
+					<i class="fa fa-caret-right" style="color: #007bff; margin-right: 8px;"></i>
+					Inverse Problems
+					<i class="fa fa-chevron-right toggle-icon"></i>
+					<div class="paper-list">
+						<ul>
+							<li>Chung, Verma et al. - Latent Twins (2025)</li>
+							<li>Wang et al. - Efficient Neural Network Approaches for Conditional Optimal Transport (2025)</li>
+							<li>Antil et al. - Novel Deep Neural Networks for Bayesian Inverse Problems (2023)</li>
+						</ul>
+					</div>
+				</li>
+				<li class="research-item" onclick="togglePapers(this)">
+					<i class="fa fa-caret-right" style="color: #007bff; margin-right: 8px;"></i>
+					Numerical Analysis
+					<i class="fa fa-chevron-right toggle-icon"></i>
+					<div class="paper-list">
+						<ul>
+							<li>Akram et al. - Error estimates for viscous Burgers' equation using deep learning (2025)</li>
+							<li>Antil, Verma - Randomized Matrix Sketching for Neural Network Training (2025)</li>
+							<li>Brown et al. - Novel DNNs for Stiff ODEs with Applications (2021)</li>
+							<li>Antil et al. - Non-Diffusive Variational Problems with Distributional Constraints (2022)</li>
+						</ul>
+					</div>
+				</li>
+				<li class="research-item" onclick="togglePapers(this)">
+					<i class="fa fa-caret-right" style="color: #007bff; margin-right: 8px;"></i>
+					Machine Learning
+					<i class="fa fa-chevron-right toggle-icon"></i>
+					<div class="paper-list">
+						<ul>
+							<li>Chung, Verma et al. - Latent Twins (2025)</li>
+							<li>Antil, Verma - Randomized Matrix Sketching for Neural Network Training (2025)</li>
+							<li>Akram et al. - Error estimates for viscous Burgers' equation using deep learning (2025)</li>
+							<li>Gelphman et al. - Jacobian-Free Backpropagation for Optimal Control (2025)</li>
+							<li>Wang et al. - Efficient Neural Network Approaches for Conditional Optimal Transport (2025)</li>
+							<li>Verma et al. - Neural Network Approaches for Parameterized Optimal Control (2024)</li>
+							<li>Li et al. - Neural Network approach for Stochastic Optimal Control (2024)</li>
+							<li>Madondo et al. - Learning Control Policies of Hodgkin-Huxley Neuronal Dynamics (2023)</li>
+							<li>Antil et al. - Novel Deep Neural Networks for Bayesian Inverse Problems (2023)</li>
+							<li>Brown et al. - Parallel Deep ResNets for Chemically Reacting Flows (2022)</li>
+							<li>Antil et al. - Deep Neural Nets with Fixed Bias Configuration (2022)</li>
+							<li>Brown et al. - Novel DNNs for Stiff ODEs (2021)</li>
+							<li>Antil et al. - Fractional Deep Neural Network via Constrained Optimization (2020)</li>
+						</ul>
+					</div>
+				</li>
 			</ul>
 		 <br>	
 		</div>
 		
 		<div id='teaching'>
-          <div class="header"><h4>Teaching
+          <div class="header"><h4><i class="fa fa-graduation-cap" style="margin-right: 10px;"></i>Teaching
 		  </h4>
 		  </div>
 			<p><strong>Clemson University</strong> (2024–Present)</p>
@@ -122,7 +595,7 @@
 		</div>
 		
 		 <div id='Publications' >
-			<h4 class="header">Publications</h4>
+			<div class="header"><h4><i class="fa fa-book" style="margin-right: 10px;"></i>Publications</h4></div>
           <br>
 			<h5 class="sectionheader">Submitted</h5>
 				<ol>
@@ -154,7 +627,7 @@
 
 
 		 <div id='awards'>
-          <h4 class="header">Awards &amp; Honours</h4>
+          <div class="header"><h4><i class="fa fa-trophy" style="margin-right: 10px;"></i>Awards &amp; Honours</h4></div>
 			 <ol>
 				<li>Dean's Graduate Award for Excellence for 2019-2020, George Mason University.</li>
 				<li>Presidential Merit Fellowship, George Mason University.</li>
@@ -166,31 +639,27 @@
         </div>
 		
         <div id='CV'>
-			<h4 class="header">Curriculum Vitae</h4>
+			<div class="header"><h4><i class="fa fa-file-text" style="margin-right: 10px;"></i>Curriculum Vitae</h4></div>
 			<br>
-			<p>Click <a href="verma_deepanshu_cv.pdf" target="_blank"><b>here</b></a>.</p>
+			<p><i class="fa fa-download" style="margin-right: 8px; color: #007bff;"></i>Download my CV <a href="verma_deepanshu_cv.pdf" target="_blank"><b>here</b></a>.</p>
         </div>		
 
         <div id='contact'>
-          <h4 class="header">Contact</h4>
+          <div class="header"><h4><i class="fa fa-envelope" style="margin-right: 10px;"></i>Contact</h4></div>
 			<br>
-			<p>Reach me by
 			<ul>
-				<li>E-mail at <a href='mailto:dverma@clemson.edu'>dverma@clemson.edu</a></li><br>
-				<li>slow Mail at
-				<br>
-				  <address>
+				<li><i class="fa fa-envelope-o" style="margin-right: 10px; color: #007bff;"></i><strong>Email:</strong> <a href='mailto:dverma@clemson.edu'>dverma@clemson.edu</a></li>
+				<li><i class="fa fa-map-marker" style="margin-right: 10px; color: #007bff;"></i><strong>Office:</strong> O-224 Martin Hall</li>
+				<li style="margin-top: 15px;"><i class="fa fa-building" style="margin-right: 10px; color: #007bff;"></i><strong>Mailing Address:</strong>
+				  <address style="margin-left: 28px; margin-top: 8px;">
 					School of Mathematical and Statistical Sciences<br>
 					Clemson University<br>
 					O-224 Martin Hall<br>
 					220 Parkway Drive<br>
-					Clemson, SC  
-				  <span style='font-size:13px;'>29634</span><br>
+					Clemson, SC 29634
 				  </address>
-				</span> </li>
-			  <li>... or stop by O-224 Martin Hall</li>
+				</li>
 			</ul>
-			</p>
           </div>
         </div>
       </div>
@@ -207,6 +676,33 @@
 
   <!-- Custom JavaScript for this theme -->
   <script src="js/scrolling-nav.js"></script>
+  
+  <!-- Toggle papers functionality -->
+  <script>
+  function togglePapers(element) {
+	  const paperList = element.querySelector('.paper-list');
+	  const allPaperLists = document.querySelectorAll('.paper-list');
+	  const allItems = document.querySelectorAll('.research-item');
+	  
+	  // Close all other dropdowns
+	  allPaperLists.forEach(list => {
+		  if (list !== paperList) {
+			  list.classList.remove('show');
+		  }
+	  });
+	  
+	  // Remove active class from all items
+	  allItems.forEach(item => {
+		  if (item !== element) {
+			  item.classList.remove('active');
+		  }
+	  });
+	  
+	  // Toggle current dropdown
+	  paperList.classList.toggle('show');
+	  element.classList.toggle('active');
+  }
+  </script>
 
 </body>
 
