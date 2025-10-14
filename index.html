@@ -48,6 +48,15 @@
 			color: #334155;
 			background: #ffffff;
 		}
+
+		/* Readability tweaks */
+		body, p, li {
+			line-height: 1.6;
+		}
+
+		.container {
+			max-width: 920px;
+		}
 		
 		/* Simple clean hero section */
 		#home {
@@ -99,6 +108,10 @@
 			color: var(--dark-color);
 			position: relative;
 			font-size: 1.8em;
+		}
+
+		@media (max-width: 768px) {
+			.header h4 { font-size: 1.4em; }
 		}
 		
 		.header h4::after {
@@ -186,14 +199,14 @@
 		
 		/* Publications with better spacing */
 		#Publications ol li {
-			margin-bottom: 20px;
-			line-height: 1.8;
+			margin-bottom: 14px;
+			line-height: 1.7;
 			text-align: justify;
-			padding: 15px;
+			padding: 12px;
 			background: #f8fafc;
 			border-radius: 8px;
 			border-left: 4px solid #e2e8f0;
-			transition: all 0.3s ease;
+			transition: all 0.2s ease;
 		}
 		
 		#Publications ol li:hover {
@@ -448,27 +461,71 @@
 		/* Mobile/tablet: make long publication entries compact with a show-more toggle */
 		@media (max-width: 768px) {
 			#Publications ol li, .paper-list ol li {
+				position: relative;
+			}
+			
+			/* Only add padding-bottom if there's a toggle button */
+			#Publications ol li:has(.show-more-toggle), 
+			.paper-list ol li:has(.show-more-toggle) {
+				padding-bottom: 40px;
+			}
+			
+			#Publications ol li:not(.expanded) .pub-content, 
+			.paper-list ol li:not(.expanded) .pub-content {
 				max-height: 88px; /* ~5 lines */
 				overflow: hidden;
 				position: relative;
 			}
-
-			.show-more-toggle {
-				display: inline-block;
-				margin-top: 8px;
-				color: var(--primary-color);
-				font-weight: 600;
-				cursor: pointer;
+			
+			/* Add gradient fade effect on collapsed items that have toggle */
+			#Publications ol li:not(.expanded):has(.show-more-toggle) .pub-content::after, 
+			.paper-list ol li:not(.expanded):has(.show-more-toggle) .pub-content::after {
+				content: '';
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				height: 30px;
+				background: linear-gradient(to bottom, transparent, #f8fafc);
+				pointer-events: none;
 			}
 
-			#Publications ol li.expanded, .paper-list ol li.expanded {
+			.show-more-toggle {
+				display: block !important;
+				margin-top: 8px;
+				color: #007bff;
+				font-weight: 600;
+				cursor: pointer;
+				text-decoration: underline;
+				font-size: 0.9em;
+				position: absolute;
+				bottom: 12px;
+				left: 12px;
+			}
+			
+			.show-more-toggle:hover {
+				color: #0056b3;
+			}
+
+			#Publications ol li.expanded .pub-content, 
+			.paper-list ol li.expanded .pub-content {
 				max-height: none;
+				overflow: visible;
+			}
+			
+			/* Remove fade effect when expanded */
+			#Publications ol li.expanded .pub-content::after, 
+			.paper-list ol li.expanded .pub-content::after {
+				display: none;
 			}
 		}
 	</style>
 </head>
 
 <body id="page-top">
+
+	<!-- Skip link for accessibility -->
+	<a href="#page" class="sr-only sr-only-focusable" style="position:fixed;left:8px;top:8px;background:#fff;padding:8px;border-radius:4px;z-index:2000;display:none;">Skip to content</a>
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
@@ -786,40 +843,139 @@
 	</script>
 
 	<script>
+	// Keep navbar toggler aria-expanded in sync
+	(function() {
+		const toggler = document.querySelector('.navbar-toggler');
+		const collapseEl = document.getElementById('navbarResponsive');
+		if (!toggler || !collapseEl) return;
+		toggler.addEventListener('click', function() {
+			const isExpanded = collapseEl.classList.contains('show');
+			toggler.setAttribute('aria-expanded', String(!isExpanded));
+		});
+	})();
+
+	// Make skip link visible on focus
+	(function() {
+		const skip = document.querySelector('.sr-only.sr-only-focusable');
+		if (!skip) return;
+		skip.addEventListener('focus', function() { skip.style.display = 'block'; });
+		skip.addEventListener('blur', function() { skip.style.display = 'none'; });
+	})();
+	</script>
+
+	<script>
 	// Add show-more toggles for long publication items on narrow screens
 	function attachShowMore() {
-		if (window.matchMedia('(max-width: 768px)').matches) {
+		console.log('attachShowMore called, window width:', window.innerWidth);
+		const mq = window.matchMedia('(max-width: 768px)');
+		console.log('Mobile view:', mq.matches);
+		
+		if (!mq.matches) {
+			// On larger screens, remove all toggles and expanded states
 			const items = document.querySelectorAll('#Publications ol li, .paper-list ol li');
 			items.forEach(li => {
-				// remove existing toggle if any
 				const existing = li.querySelector('.show-more-toggle');
 				if (existing) existing.remove();
-				// only add toggle if content overflows
-				if (li.scrollHeight > li.clientHeight + 2) {
+				li.classList.remove('expanded');
+				// Unwrap content if it was wrapped
+				const wrapper = li.querySelector('.pub-content');
+				if (wrapper) {
+					while (wrapper.firstChild) {
+						li.insertBefore(wrapper.firstChild, wrapper);
+					}
+					wrapper.remove();
+				}
+			});
+			return;
+		}
+
+		const maxH = 88; // must match CSS max-height for collapsed items
+		const items = document.querySelectorAll('#Publications ol li, .paper-list ol li');
+		console.log('Found', items.length, 'publication items');
+
+		items.forEach((li, index) => {
+			// Check if already processed
+			let wrapper = li.querySelector('.pub-content');
+			let existing = li.querySelector('.show-more-toggle');
+			
+			// If not wrapped yet, wrap the content
+			if (!wrapper) {
+				wrapper = document.createElement('div');
+				wrapper.className = 'pub-content';
+				// Move all children into wrapper except existing toggle
+				const children = Array.from(li.childNodes);
+				children.forEach(child => {
+					if (!child.classList || !child.classList.contains('show-more-toggle')) {
+						wrapper.appendChild(child);
+					}
+				});
+				li.appendChild(wrapper);
+			}
+			
+			// Remove existing toggle if any
+			if (existing) {
+				existing.remove();
+			}
+			
+			// Measure natural height
+			const wasExpanded = li.classList.contains('expanded');
+			li.classList.add('expanded');
+			
+			// Use requestAnimationFrame for accurate measurement
+			requestAnimationFrame(() => {
+				const naturalHeight = wrapper.scrollHeight;
+				console.log(`Item ${index}: naturalHeight=${naturalHeight}, maxH=${maxH}`);
+				
+				// Restore previous state
+				if (!wasExpanded) {
+					li.classList.remove('expanded');
+				}
+				
+				// Add toggle if content is taller than max height (with small 2px tolerance)
+				// OR if it's close to maxH, just expand it fully without toggle
+				if (naturalHeight > maxH + 2) {
+					console.log(`Item ${index}: Adding toggle button`);
 					const btn = document.createElement('span');
 					btn.className = 'show-more-toggle';
-					btn.textContent = 'Show more';
+					btn.textContent = wasExpanded ? 'Show less' : 'Show more';
 					btn.addEventListener('click', function(e) {
 						e.stopPropagation();
+						e.preventDefault();
 						li.classList.toggle('expanded');
 						btn.textContent = li.classList.contains('expanded') ? 'Show less' : 'Show more';
 					});
 					li.appendChild(btn);
+				} else if (naturalHeight > maxH - 5) {
+					// If it's just slightly over, keep it expanded to avoid weird cutoff
+					console.log(`Item ${index}: Close to limit, keeping expanded`);
+					li.classList.add('expanded');
+				} else {
+					console.log(`Item ${index}: Skipping (not tall enough)`);
 				}
 			});
-		}
+		});
 	}
 
-	// Run on load and on orientation/resize
-	document.addEventListener('DOMContentLoaded', attachShowMore);
+	// Run on load
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', () => {
+			setTimeout(attachShowMore, 100); // Small delay to ensure rendering
+		});
+	} else {
+		setTimeout(attachShowMore, 100);
+	}
+	
+	// Run on resize with debounce
+	let resizeTimer;
 	window.addEventListener('resize', function() {
-		// small debounce
-		clearTimeout(window._attachShowMoreTimer);
-		window._attachShowMoreTimer = setTimeout(attachShowMore, 150);
+		clearTimeout(resizeTimer);
+		resizeTimer = setTimeout(attachShowMore, 200);
 	});
-
-		// Also run immediately in case DOMContentLoaded already fired or device emulation was toggled
-		attachShowMore();
+	
+	// Also listen for orientation change on mobile
+	window.addEventListener('orientationchange', function() {
+		setTimeout(attachShowMore, 300);
+	});
 	</script>
 
 </body>
