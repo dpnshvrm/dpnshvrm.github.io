@@ -125,37 +125,26 @@
 			gap: 15px;
 		}
 		
+		/* Make research cards visually match Publications entries */
 		#researchinterests ul li {
-			padding: 20px 20px;
-			margin: 0;
-			background: white;
-			border: 2px solid #e2e8f0;
-			border-radius: 12px;
-			transition: all 0.3s ease;
-			position: relative;
-			overflow: hidden;
+			margin: 0 0 0 0;
+			padding: 15px;
+			background: #f8fafc; /* same as publications */
+			border-radius: 8px;
+			border-left: 4px solid #e2e8f0; /* same left accent */
+			transition: background 0.25s ease, transform 0.25s ease, border-left-color 0.25s ease;
 		}
-		
+
+		/* remove prior decorative pseudo-element so the left-border is primary accent */
 		#researchinterests ul li::before {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 5px;
-			height: 100%;
-			background: var(--dark-color);
-			transition: width 0.3s ease;
+			display: none;
+			content: none;
 		}
-		
+
 		#researchinterests ul li:hover {
+			background: #f1f5f9;
+			border-left-color: var(--dark-color);
 			transform: translateX(5px);
-			box-shadow: 0 8px 25px rgba(51, 65, 85, 0.15);
-			border-color: var(--dark-color);
-		}
-		
-		#researchinterests ul li:hover::before {
-			width: 100%;
-			opacity: 0.03;
 		}
 		
 		/* Teaching section with timeline style */
@@ -274,17 +263,33 @@
 			cursor: pointer;
 			position: relative;
 			font-weight: 500;
+			padding: 8px 12px;
+			border-left: 4px solid transparent;
+			border-radius: 6px;
+			transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 		}
-		
+
+		.research-item:hover {
+			background-color: rgba(2,6,23,0.03); /* subtle hover tint */
+			transform: translateY(-1px);
+		}
+
 		.research-item .toggle-icon {
 			float: right;
-			transition: transform 0.3s ease;
-			color: var(--dark-color);
-			font-weight: bold;
+			transition: transform 0.25s cubic-bezier(.2,.8,.2,1), color 0.18s ease;
+			color: var(--muted-color, #475569);
+			font-weight: 600;
 		}
-		
+
+		.research-item.active {
+			border-left-color: var(--primary-color);
+			background-color: rgba(16,24,40,0.03); /* very light tint */
+			box-shadow: 0 2px 8px rgba(15,23,42,0.03);
+		}
+
 		.research-item.active .toggle-icon {
 			transform: rotate(90deg);
+			color: var(--primary-color);
 		}
 		
 		.paper-list {
@@ -429,6 +434,27 @@
 				font-size: 1.5em;
 			}
 		}
+
+		/* Mobile/tablet: make long publication entries compact with a show-more toggle */
+		@media (max-width: 768px) {
+			#Publications ol li, .paper-list ol li {
+				max-height: 88px; /* ~5 lines */
+				overflow: hidden;
+				position: relative;
+			}
+
+			.show-more-toggle {
+				display: inline-block;
+				margin-top: 8px;
+				color: var(--primary-color);
+				font-weight: 600;
+				cursor: pointer;
+			}
+
+			#Publications ol li.expanded, .paper-list ol li.expanded {
+				max-height: none;
+			}
+		}
 	</style>
 </head>
 
@@ -507,18 +533,18 @@
 					<abbr title="Partial Differential Equation" class="initialism">PDE</abbr> Constrained Optimization
 					<i class="fa fa-chevron-right toggle-icon"></i>
 					<div class="paper-list">
-						<ul>
-							<li>Gelphman et al. - End-to-end Training of High-Dimensional Optimal Control (2025)</li>
-							<li>Li et al. - Zero-Shot Transferable Solution for Optimal Control (2025)</li>
-							<li>Verma et al. - Neural Network Approaches for Parameterized Optimal Control (FODS 2024)</li>
-							<li>Li et al. - Neural Network approach for Stochastic Optimal Control (SISC 2024)</li>
-							<li>Madondo et al. - Learning Control Policies of Hodgkin-Huxley Neuronal Dynamics (2023)</li>
-							<li>Lamichhane et al. - Mixed FEM for Biharmonic Optimal Control (2023)</li>
-							<li>Antil et al. - Optimal Control, Numerics, and Applications of Fractional PDEs (2022)</li>
-							<li>Antil et al. - Optimal Control of Fractional PDEs with Constraints (2021)</li>
-							<li>Antil, Verma, Warma - Optimal Control of Fractional Elliptic PDEs (2020)</li>
-							<li>Antil, Verma, Warma - External Optimal Control of Space-Time Fractional Parabolic PDEs (2020)</li>
-						</ul>
+						<ol>
+							<li>E. Gelphman, <b>D. Verma</b>, N.T. Yang, S. Osher and S. Wu Fung. End-to-end Training of High-Dimensional Optimal Control with Implicit Hamiltonians via Jacobian-Free Backpropagation. arXiv: <a href = "https://arxiv.org/pdf/2510.00359.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="font-size:18px;color:black"></i></a>.</li>
+							<li>X. Li, K. Kan, <b>D. Verma</b>, K. Kumar, S. Osher and J. Drgoňa. Zero-Shot Transferable Solution Method for Parametric Optimal Control Problems. arXiv: <a href = "https://arxiv.org/pdf/2509.18404.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="font-size:18px;color:black"></i></a>.</li>
+							<li> <b>D. Verma</b>, N. Winovich, L. Ruthotto and B. van Bloemen Waanders. Neural Network Approaches for Parameterized Optimal Control. DOI:  <a href = "https://doi.org/10.3934/fods.2024042" target="_blank">10.3934/fods.2024042</a>. arXiv: <a href = "https://arxiv.org/pdf/2402.10033.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="font-size:18px;color:black"></i></a>.</li>
+							<li> X. Li, L. Ruthotto, and <b>D. Verma</b>. A Neural Network approach for Stochastic Optimal Control problems. Accepted to <i>SISC VoL 46 Iss. 5 2024</i>. DOI:  <a href = "https://doi.org/10.1137/23M155832X" target="_blank">10.1137/23M155832X</a>. arXiv: <a href = "https://arxiv.org/pdf/2209.13104.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="font-size:18px;color:black"></i></a>.</li>
+							<li> M. Madondo, <b>D. Verma</b>, L. Ruthotto, and N. A. Yong. Learning Control Policies of Hodgkin-Huxley Neuronal Dynamics. <i>ML4H 2023</i>. arXiv: <a href = "https://arxiv.org/pdf/2311.07563.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="font-size:18px;color:black"></i></a>.</li>
+							<li>B. P. Lamichhane, N. Nataraj, and <b>D. Verma</b>. A mixed finite element method using a biorthogonal system for optimal control problems governed by a biharmonic equation. Accepted in <i>ANZIAMJ 2023</i>.</li>
+							<li>H. Antil, T.S. Brown, R. L&ouml;hner, F. Togashi, and <b>D. Verma</b>. Novel DNNs for Stiff ODEs with Applications to Chemically Reacting Flows. <i>Accepted 2021</i>. DOI: <a href = "https://doi.org/10.1007/978-3-030-90539-2_2" target="_blank">https://doi.org/10.1007/978-3-030-90539-2_2</a>. arXiv: <a href = "https://arxiv.org/pdf/2104.01914.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="font-size:18px;color:black"></i></a>.</li>
+							<li>H. Antil, R. Khatri, R. L&ouml;hner and <b>D. Verma</b>. Fractional Deep Neural Network via Constrained Optimization. <i>Machine Learning: Science and Technology 2020</i>. DOI: <a href="https://doi.org/10.1088/2632-2153/aba8e7" target="_blank">https://doi.org/10.1088/2632-2153/aba8e7</a>. arXiv:<a href="https://arxiv.org/pdf/2004.00719.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="font-size:18px;color:black"></i></a></li>
+							<li>H. Antil, <b>D. Verma</b>, and M. Warma. Optimal Control of Fractional Elliptic PDEs with State Constraints and Characterization of the dual of Fractional Order Sobolev Spaces. <i>J Optim Theory Appl 186, 1	6 (2020)</i>. DOI: <a href="https://doi.org/10.1007/s10957-020-01684-z" target="_blank">https://doi.org/10.1007/s10957-020-01684-z</a>. arXiv: <a href="https://arxiv.org/pdf/1906.00032.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="font-size:18px;color:black"></i></a></li>
+							<li>H. Antil, <b>D. Verma</b>, and M. Warma. External Optimal Control of Space-Time Fractional Parabolic PDEs. <i>ESAIM: COCV 26 (2020) 20</i>. DOI: <a href="https://doi.org/10.1051/cocv/2020005" target="_blank">https://doi.org/10.1051/cocv/2020005</a>. arXiv: <a href="https://arxiv.org/pdf/1904.07123.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="font-size:18px;color:black"></i></a></li>
+						</ol>
 					</div>
 				</li>
 				<li class="research-item" onclick="togglePapers(this)">
@@ -526,11 +552,11 @@
 					Inverse Problems
 					<i class="fa fa-chevron-right toggle-icon"></i>
 					<div class="paper-list">
-						<ul>
-							<li>Chung, Verma et al. - Latent Twins (2025)</li>
-							<li>Wang et al. - Efficient Neural Network Approaches for Conditional Optimal Transport (2025)</li>
-							<li>Antil et al. - Novel Deep Neural Networks for Bayesian Inverse Problems (2023)</li>
-						</ul>
+						<ol>
+							<li>M. Chung, <b>D. Verma</b>, M. Collins, A.N. Subrahmanya, V. Katti Sastry and V. Rao. Latent Twins. arXiv: <a href = "https://arxiv.org/pdf/2509.20615.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="font-size:18px;color:black"></i></a>.</li>
+							<li>Z. Wang, R. Baptista, Y. Marzouk, L. Ruthotto and <b>D. Verma</b>. Efficient Neural Network Approaches for Conditional Optimal Transport with Applications in Bayesian Inference. arXiv: <a href = "https://arxiv.org/pdf/2310.16975.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="font-size:18px;color:black"></i></a>.</li>
+							<li>H. Antil, H.C. Elman, A. Onwunta, and <b>D. Verma</b>. Novel Deep Neural Networks for Solving Bayesian Statistical Inverse Problems. <i>Mach. Learn.: Sci. Technol. 4 035015</i>. DOI:  <a href = "https://doi.org/10.1088/2632-2153/ace67c" target="_blank">10.1088/2632-2153/ace67c</a>. arXiv: <a href = "https://arxiv.org/pdf/2102.03974.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="font-size:18px;color:black"></i></a></li>
+						</ol>
 					</div>
 				</li>
 				<li class="research-item" onclick="togglePapers(this)">
@@ -538,12 +564,12 @@
 					Numerical Analysis
 					<i class="fa fa-chevron-right toggle-icon"></i>
 					<div class="paper-list">
-						<ul>
-							<li>Akram et al. - Error estimates for viscous Burgers' equation using deep learning (2025)</li>
-							<li>Antil, Verma - Randomized Matrix Sketching for Neural Network Training (2025)</li>
-							<li>Brown et al. - Novel DNNs for Stiff ODEs with Applications (2021)</li>
-							<li>Antil et al. - Non-Diffusive Variational Problems with Distributional Constraints (2022)</li>
-						</ul>
+						<ol>
+							<li>W. Akram, S. Gautam, <b>D. Verma</b> and M. Mohan. Error estimates for viscous Burgers' equation using deep learning method. arXiv: <a href = "https://arxiv.org/pdf/2502.19392.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="font-size:18px;color:black"></i></a>.</li>
+							<li>H. Antil and <b>D. Verma</b>. Randomized Matrix Sketching for Efficient Neural Network Training and Gradient Monitoring. arXiv: <a href = "https://arxiv.org/pdf/2510.00442.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="font-size:18px;color:black"></i></a>.</li>
+							<li> T.S Brown, H. Antil, R. L&ouml;hner, F. Togashi, and <b>D. Verma</b>. Novel DNNs for Stiff ODEs with Applications to Chemically Reacting Flows. DOI: <a href = "https://doi.org/10.1007/978-3-030-90539-2_2" target="_blank">https://doi.org/10.1007/978-3-030-90539-2_2</a>. arXiv: <a href = "https://arxiv.org/pdf/2104.01914.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="font-size:18px;color:black"></i></a></li>
+							<li>H. Antil, R. Arndt, C.N. Rautenberg, and <b>D. Verma</b>. Non-Diffusive Variational Problems with Distributional and Weak Gradient Constraints. <i>Advances in Nonlinear Analysis 2022</i>. DOI:  <a href = "https://doi.org/10.1515/anona-2022-0227" target="_blank">10.1515/anona-2022-0227</a>.</li>
+						</ol>
 					</div>
 				</li>
 				<li class="research-item" onclick="togglePapers(this)">
@@ -551,21 +577,21 @@
 					Machine Learning
 					<i class="fa fa-chevron-right toggle-icon"></i>
 					<div class="paper-list">
-						<ul>
-							<li>Chung, Verma et al. - Latent Twins (2025)</li>
-							<li>Antil, Verma - Randomized Matrix Sketching for Neural Network Training (2025)</li>
-							<li>Akram et al. - Error estimates for viscous Burgers' equation using deep learning (2025)</li>
-							<li>Gelphman et al. - Jacobian-Free Backpropagation for Optimal Control (2025)</li>
-							<li>Wang et al. - Efficient Neural Network Approaches for Conditional Optimal Transport (2025)</li>
-							<li>Verma et al. - Neural Network Approaches for Parameterized Optimal Control (2024)</li>
-							<li>Li et al. - Neural Network approach for Stochastic Optimal Control (2024)</li>
-							<li>Madondo et al. - Learning Control Policies of Hodgkin-Huxley Neuronal Dynamics (2023)</li>
-							<li>Antil et al. - Novel Deep Neural Networks for Bayesian Inverse Problems (2023)</li>
-							<li>Brown et al. - Parallel Deep ResNets for Chemically Reacting Flows (2022)</li>
-							<li>Antil et al. - Deep Neural Nets with Fixed Bias Configuration (2022)</li>
-							<li>Brown et al. - Novel DNNs for Stiff ODEs (2021)</li>
-							<li>Antil et al. - Fractional Deep Neural Network via Constrained Optimization (2020)</li>
-						</ul>
+						<ol>
+							<li>M. Chung, <b>D. Verma</b>, M. Collins, A.N. Subrahmanya, V. Katti Sastry and V. Rao. Latent Twins. arXiv: <a href = "https://arxiv.org/pdf/2509.20615.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="font-size:18px;color:black"></i></a>.</li>
+							<li>H. Antil and <b>D. Verma</b>. Randomized Matrix Sketching for Efficient Neural Network Training and Gradient Monitoring. arXiv: <a href = "https://arxiv.org/pdf/2510.00442.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="font-size:18px;color:black"></i></a>.</li>
+							<li>W. Akram, S. Gautam, <b>D. Verma</b> and M. Mohan. Error estimates for viscous Burgers' equation using deep learning method. arXiv: <a href = "https://arxiv.org/pdf/2502.19392.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="font-size:18px;color:black"></i></a>.</li>
+							<li>E. Gelphman, <b>D. Verma</b>, N.T. Yang, S. Osher and S. Wu Fung. End-to-end Training of High-Dimensional Optimal Control with Implicit Hamiltonians via Jacobian-Free Backpropagation. arXiv: <a href = "https://arxiv.org/pdf/2510.00359.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="font-size:18px;color:black"></i></a>.</li>
+							<li>Z. Wang, R. Baptista, Y. Marzouk, L. Ruthotto and <b>D. Verma</b>. Efficient Neural Network Approaches for Conditional Optimal Transport with Applications in Bayesian Inference. arXiv: <a href = "https://arxiv.org/pdf/2310.16975.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="font-size:18px;color:black"></i></a>.</li>
+							<li><b>D. Verma</b>, N. Winovich, L. Ruthotto and B. van Bloemen Waanders. Neural Network Approaches for Parameterized Optimal Control. DOI:  <a href = "https://doi.org/10.3934/fods.2024042" target="_blank">10.3934/fods.2024042</a>. arXiv: <a href = "https://arxiv.org/pdf/2402.10033.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="font-size:18px;color:black"></i></a>.</li>
+							<li>X. Li, L. Ruthotto, and <b>D. Verma</b>. A Neural Network approach for Stochastic Optimal Control problems. Accepted to <i>SISC VoL 46 Iss. 5 2024</i>. DOI:  <a href = "https://doi.org/10.1137/23M155832X" target="_blank">10.1137/23M155832X</a>. arXiv: <a href = "https://arxiv.org/pdf/2209.13104.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="font-size:18px;color:black"></i></a>.<a href = "https://coursemedia.gmu.edu/media/CMAI_Colloquium/1_n8blwc4x" target="_blank"> <i class="fa fa-video-camera" style="font-size:18px;color:black"></i></a></li>
+							<li>M. Madondo, <b>D. Verma</b>, L. Ruthotto, and N. A. Yong. Learning Control Policies of Hodgkin-Huxley Neuronal Dynamics. <i>ML4H 2023</i>. arXiv: <a href = "https://arxiv.org/pdf/2311.07563.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="font-size:18px;color:black"></i></a>.</li>
+							<li>H. Antil, H.C. Elman, A. Onwunta, and <b>D. Verma</b>. Novel Deep Neural Networks for Solving Bayesian Statistical Inverse Problems. <i>Mach. Learn.: Sci. Technol. 4 035015</i>. DOI:  <a href = "https://doi.org/10.1088/2632-2153/ace67c" target="_blank">10.1088/2632-2153/ace67c</a>. arXiv: <a href = "https://arxiv.org/pdf/2102.03974.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="font-size:18px;color:black"></i></a></li>
+							<li>T.S. Brown, H. Antil, R. L&ouml;hner, F. Togashi, and <b>D. Verma</b>. Parallel Deep ResNets for Chemically Reacting Flows. <i>AIAA SciTech Forum 2022-1076. 2022</i>. DOI: <a href = "https://arc.aiaa.org/doi/10.2514/6.2022-1076" target="_blank">10.2514/6.2022-1076</a>.</li>
+							<li>H. Antil, T.S Brown, R. Khatri, A. Onwunta, <b>D. Verma</b>, and M. Warma. Deep Neural Nets with Fixed Bias Configuration. <i>Numer. Algebra Control Optim. (NACO) 2022</i>. DOI:  <a href = "http://dx.doi.org/10.3934/naco.2022016" target="_blank">10.3934/naco.2022016</a>.</li>
+							<li>T.S Brown, H. Antil, R. L&ouml;hner, F. Togashi, and <b>D. Verma</b>. Novel DNNs for Stiff ODEs with Applications to Chemically Reacting Flows. Accepted in <i>Computational Fluid Dynamics Simulations and Analysis (CFDML) 2021</i>. DOI: <a href = "https://doi.org/10.1007/978-3-030-90539-2_2" target="_blank">https://doi.org/10.1007/978-3-030-90539-2_2</a>. arXiv: <a href = "https://arxiv.org/pdf/2104.01914.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="font-size:18px;color:black"></i></a></li>
+							<li>H. Antil, R. Khatri, R. L&ouml;hner and <b>D. Verma</b>. Fractional Deep Neural Network via Constrained Optimization. <i>Machine Learning: Science and Technology 2020</i>. DOI: <a href = "https://doi.org/10.1088/2632-2153/aba8e7" target="_blank">https://doi.org/10.1088/2632-2153/aba8e7</a>. arXiv:<a href = "https://arxiv.org/pdf/2004.00719.pdf" target="_blank"><i class="fa fa-file-pdf-o" style="font-size:18px;color:black"></i></a></li>
+							</ol>
 					</div>
 				</li>
 			</ul>
@@ -679,30 +705,112 @@
   
   <!-- Toggle papers functionality -->
   <script>
-  function togglePapers(element) {
-	  const paperList = element.querySelector('.paper-list');
-	  const allPaperLists = document.querySelectorAll('.paper-list');
-	  const allItems = document.querySelectorAll('.research-item');
-	  
-	  // Close all other dropdowns
-	  allPaperLists.forEach(list => {
-		  if (list !== paperList) {
-			  list.classList.remove('show');
-		  }
-	  });
-	  
-	  // Remove active class from all items
-	  allItems.forEach(item => {
-		  if (item !== element) {
-			  item.classList.remove('active');
-		  }
-	  });
-	  
-	  // Toggle current dropdown
-	  paperList.classList.toggle('show');
-	  element.classList.toggle('active');
-  }
-  </script>
+	function togglePapers(element) {
+		const paperList = element.querySelector('.paper-list');
+		const allPaperLists = document.querySelectorAll('.paper-list');
+		const allItems = document.querySelectorAll('.research-item');
+
+		// Close all other dropdowns
+		allPaperLists.forEach(list => {
+			if (list !== paperList) {
+				list.classList.remove('show');
+			}
+		});
+
+		// Remove active class from all items
+		allItems.forEach(item => {
+			if (item !== element) {
+				item.classList.remove('active');
+			}
+		});
+
+		// Toggle current dropdown
+		paperList.classList.toggle('show');
+		element.classList.toggle('active');
+	}
+
+	// Close dropdowns when clicking outside a research-item or its paper-list
+	document.addEventListener('click', function(e) {
+		// If click happened inside a research-item or inside an open paper-list, do nothing
+		const insideResearch = e.target.closest('.research-item') || e.target.closest('.paper-list');
+		if (!insideResearch) {
+			document.querySelectorAll('.paper-list.show').forEach(list => list.classList.remove('show'));
+			document.querySelectorAll('.research-item.active').forEach(it => it.classList.remove('active'));
+		}
+	});
+
+	// Allow Escape key to close open dropdowns
+	document.addEventListener('keydown', function(e) {
+		if (e.key === 'Escape' || e.key === 'Esc') {
+			document.querySelectorAll('.paper-list.show').forEach(list => list.classList.remove('show'));
+			document.querySelectorAll('.research-item.active').forEach(it => it.classList.remove('active'));
+		}
+	});
+
+	// Collapse Bootstrap navbar when clicking outside or pressing Escape
+	(function() {
+		const navbarCollapse = document.getElementById('navbarResponsive');
+		if (!navbarCollapse) return;
+
+		// Helper to collapse using Bootstrap's collapse (works with bootstrap.bundle)
+		function collapseNavbar() {
+			if (navbarCollapse.classList.contains('show')) {
+				// Use Bootstrap's Collapse via jQuery if available
+				if (window.jQuery && jQuery.fn && jQuery.fn.collapse) {
+					jQuery(navbarCollapse).collapse('hide');
+				} else {
+					navbarCollapse.classList.remove('show');
+				}
+			}
+		}
+
+		document.addEventListener('click', function(e) {
+			const insideNav = e.target.closest('.navbar');
+			if (!insideNav) collapseNavbar();
+		});
+
+		document.addEventListener('keydown', function(e) {
+			if (e.key === 'Escape' || e.key === 'Esc') collapseNavbar();
+		});
+	})();
+	</script>
+
+	<script>
+	// Add show-more toggles for long publication items on narrow screens
+	function attachShowMore() {
+		if (window.matchMedia('(max-width: 768px)').matches) {
+			const items = document.querySelectorAll('#Publications ol li, .paper-list ol li');
+			items.forEach(li => {
+				// remove existing toggle if any
+				const existing = li.querySelector('.show-more-toggle');
+				if (existing) existing.remove();
+				// only add toggle if content overflows
+				if (li.scrollHeight > li.clientHeight + 2) {
+					const btn = document.createElement('span');
+					btn.className = 'show-more-toggle';
+					btn.textContent = 'Show more';
+					btn.addEventListener('click', function(e) {
+						e.stopPropagation();
+						li.classList.toggle('expanded');
+						btn.textContent = li.classList.contains('expanded') ? 'Show less' : 'Show more';
+					});
+					li.appendChild(btn);
+				}
+			});
+		}
+	}
+
+	// Run on load and on orientation/resize
+	document.addEventListener('DOMContentLoaded', attachShowMore);
+	window.addEventListener('resize', function() {
+		// small debounce
+		clearTimeout(window._attachShowMoreTimer);
+		window._attachShowMoreTimer = setTimeout(attachShowMore, 150);
+	});
+
+		// Also run immediately in case DOMContentLoaded already fired or device emulation was toggled
+		attachShowMore();
+	</script>
 
 </body>
 
