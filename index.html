@@ -8,6 +8,16 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
+	<meta name="description" content="Deepanshu Verma — Mathematical scientist. Research in PDE-constrained optimization, inverse problems, numerical analysis and machine learning. CV, publications, and teaching." />
+	<!-- Open Graph / Twitter -->
+	<meta property="og:title" content="Deepanshu Verma — Mathematical Scientist" />
+	<meta property="og:description" content="Research in PDE-constrained optimization, inverse problems, numerical analysis and machine learning. CV, publications, and teaching." />
+	<meta property="og:image" content="/images/Dverma-2.png" />
+	<meta property="og:type" content="website" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Deepanshu Verma — Mathematical Scientist" />
+	<meta name="twitter:description" content="Research in PDE-constrained optimization, inverse problems, numerical analysis and machine learning." />
+
   <title>Deepanshu Verma | Mathematical Scientist</title>
 
   <!-- Bootstrap core CSS -->
@@ -352,22 +362,22 @@
 			gap: 10px;
 		}
 		
+		/* Subtle inline CV link */
 		#CV a {
-			display: inline-block;
-			padding: 12px 30px;
-			background: var(--dark-color);
-			color: white !important;
-			border-radius: 8px;
+			color: var(--primary-color);
 			font-weight: 600;
-			text-decoration: none;
-			transition: all 0.3s ease;
-			box-shadow: 0 4px 15px rgba(30, 41, 59, 0.2);
+			text-decoration: underline;
+			padding: 0;
+			background: transparent;
+			border-radius: 0;
+			box-shadow: none;
+			transition: color 0.15s ease, transform 0.12s ease;
 		}
-		
+
 		#CV a:hover {
-			transform: translateY(-2px);
-			box-shadow: 0 6px 25px rgba(30, 41, 59, 0.3);
-			background: var(--secondary-color);
+			color: var(--secondary-color);
+			transform: translateY(-1px);
+			text-decoration: none;
 		}
 		
 		/* Navbar enhancements */
@@ -664,11 +674,11 @@
 			 </ol>
         </div>
 		
-        <div id='CV'>
+		<div id='CV'>
 			<div class="header"><h4><i class="fa fa-file-text" style="margin-right: 10px;"></i>Curriculum Vitae</h4></div>
 			<br>
-			<p><i class="fa fa-download" style="margin-right: 8px; color: #007bff;"></i>Download my CV <a href="verma_deepanshu_cv.pdf" target="_blank"><b>here</b></a>.</p>
-        </div>		
+			<p><i class="fa fa-download" style="margin-right: 8px; color: var(--primary-color); opacity: 0.75;"></i><a href="verma_deepanshu_cv.pdf" target="_blank">Download CV (PDF)</a></p>
+		</div>
 
         <div id='contact'>
           <div class="header"><h4><i class="fa fa-envelope" style="margin-right: 10px;"></i>Contact</h4></div>
